@@ -11,8 +11,8 @@
       },
       "staleness":   5000,
       "cost":        "low",
-      "repo": "",
-      "command":  "",
+      "repo":        "",
+      "command":     ""
     }
   }
 }
