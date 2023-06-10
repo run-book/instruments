@@ -1,5 +1,39 @@
 {
   "instrument": {
+    "catCsv": {
+      "type": "script",
+      "description": "A demo instrument that displays a csv file",
+      "params": {
+        "file": {
+          "description": "The file to display"
+        }
+      },
+      "staleness": 5000,
+      "cost": "low",
+      "windows": {
+        "script": "type {file}",
+        "format": {
+          "type": "table",
+          "hideHeader": 1
+        }
+      },
+      "linux": {
+        "script": "cat {file}",
+        "format": {
+          "type": "table",
+          "hideHeader": 1
+        }
+      },
+      "__from": [
+        "C:\\git\\runbook\\instruments\\.runbook\\config\\cat.instrument.json"
+      ]
+    },
+    "__from": [
+      "C:\\git\\runbook\\instruments\\.runbook\\config\\cat.instrument.json",
+      "C:\\git\\runbook\\instruments\\.runbook\\config\\echo.instrument.json",
+      "C:\\git\\runbook\\instruments\\.runbook\\config\\ls.instrument.json",
+      "C:\\git\\runbook\\instruments\\.runbook\\config\\ping.instrument.json"
+    ],
     "echo": {
       "type": "script",
       "description": "An instrument that sends its arguments to standard output",
@@ -15,13 +49,9 @@
         "hideHeader": 1
       },
       "__from": [
-        "echo.instrument.json"
+        "C:\\git\\runbook\\instruments\\.runbook\\config\\echo.instrument.json"
       ]
     },
-    "__from": [
-      "echo.instrument.json",
-      "ls.instrument.json"
-    ],
     "ls": {
       "type": "script",
       "description": "A demo instrument that displays the directory contents",
@@ -52,12 +82,36 @@
         }
       },
       "__from": [
-        "ls.instrument.json"
+        "C:\\git\\runbook\\instruments\\.runbook\\config\\ls.instrument.json"
+      ]
+    },
+    "ping": {
+      "type": "script",
+      "description": "pings a server",
+      "params": {
+        "domain": {
+          "description": "The domain name to ping"
+        }
+      },
+      "staleness": 10000,
+      "cost": "low",
+      "windows": {
+        "script": "ping -n 1 {domain}",
+        "format": "exitcode==0"
+      },
+      "linux": {
+        "script": "ping -c 1 {domain}",
+        "format": "exitcode==0"
+      },
+      "__from": [
+        "C:\\git\\runbook\\instruments\\.runbook\\config\\ping.instrument.json"
       ]
     }
   },
   "__from": [
-    "echo.instrument.json",
-    "ls.instrument.json"
+    "C:\\git\\runbook\\instruments\\.runbook\\config\\cat.instrument.json",
+    "C:\\git\\runbook\\instruments\\.runbook\\config\\echo.instrument.json",
+    "C:\\git\\runbook\\instruments\\.runbook\\config\\ls.instrument.json",
+    "C:\\git\\runbook\\instruments\\.runbook\\config\\ping.instrument.json"
   ]
 }
